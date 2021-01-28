@@ -41,7 +41,7 @@ for file in address_list:
     
     
     image = cv2.imread(myfile)
-    image = cv2.resize(image,(800,740))
+    image = cv2.resize(image,(900,1000))
 
     gray_image=cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
@@ -54,46 +54,63 @@ for file in address_list:
     f = open(r'C:\Users\Ramesh\Desktop\Parsing_Project\parsed.txt', "a")
 
     def name(image):
-        f.write('Name:')
-        name_cropped = sharpened[30:70, 250:600]
-        text = pytesseract.image_to_string(name_cropped).replace(',', ' ')
+        
+        f.write('Name : ')
+        name_cropped = sharpened[30:90, 300:800]
+        #cv2.imshow("cropped",name_cropped)
+        #cv2.waitKey(0)
+        text = pytesseract.image_to_string(name_cropped).replace(',', ' ').replace('\f','')
+
         print(text)
+         
         f.write(text + '\n')
     
     
 
     def contact(image):
-        f.write('Contact:')
-        contact_cropped = sharpened[10:125, 10:200]
-        text = pytesseract.image_to_string(contact_cropped).replace(',', ' ')
+
+
+        contact_cropped = image[10:180, 18:280]
+        #cv2.imshow("cropped",contact_cropped)
+        #cv2.waitKey(0)
+        text = pytesseract.image_to_string(contact_cropped).replace(',', ' ').replace('\f','')
         print(text)
         f.write(text + '\n')
     
 
     def designation(image):
-        f.write('Designation:')
-        designation_cropped = sharpened[60:90, 250:600]
-        text = pytesseract.image_to_string(designation_cropped).replace(',', ' ')
+        
+        f.write('Designation : ')
+        designation_cropped = image[90:120, 310:850]
+        #cv2.imshow("cropped",designation_cropped)
+        #cv2.waitKey(0)
+        text = pytesseract.image_to_string(designation_cropped).replace(',', ' ').replace('\f','')
         print(text)
-        f.write(text + '\n')
+        f.write(text +'\n' )
     
 
 
     def place(image):
-        f.write('Place:')
-        place_cropped = sharpened[85:100, 250:600]
-        text = pytesseract.image_to_string(place_cropped).replace(',', ' ')
+        
+        f.write('Place : ')
+        place_cropped = sharpened[115:150, 300:625]
+        #cv2.imshow("cropped",place_cropped)
+        #cv2.waitKey(0)
+        text = pytesseract.image_to_string(place_cropped).replace(',', ' ').replace('\f','')
         print(text)
         f.write(text + '\n')
     
 
 
     def skills(image):
-        f.write('Skills:')
-        skills_cropped = sharpened[110:210, 10:220]
-        text = pytesseract.image_to_string(skills_cropped).replace(',', ' ')
+        
+        skills_cropped = image[150:290, 10:300]
+        #cv2.imshow("cropped",skills_cropped)
+        #
+        cv2.waitKey(0)
+        text = pytesseract.image_to_string(skills_cropped).replace(',', ' ').replace('\f','')
         print(text)
-        f.write(text + '\n')
+        f.write(text +'\n' )
         f.close()
     
 
